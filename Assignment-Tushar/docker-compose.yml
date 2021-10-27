@@ -1,0 +1,14 @@
+version: "3"
+
+services: 
+    mongo:
+        image: "mongo"                  #taking mongo image from dockerhub 
+        ports:
+            - "27017:27017"             #Port
+    
+    python:
+        build: .                        
+        depends_on:                     
+            - mongo
+        ports:
+            - "5000:5000"               #Port

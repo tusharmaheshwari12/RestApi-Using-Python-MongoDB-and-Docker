@@ -1,0 +1,23 @@
+#Taking images (from dockerhub) 
+FROM mongo:3.6.4             
+
+FROM python:3
+
+#Working directory
+WORKDIR /app
+
+#Copy requirements into Docker Directory
+COPY /requirements.txt /app
+
+#Installing dependencies
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+#Ports
+EXPOSE 27017
+EXPOSE 5000
+
+COPY ["app.py", "/app"]
+COPY . .
+
+#Executing app.py with python3
+CMD ["python3","app.py"]
